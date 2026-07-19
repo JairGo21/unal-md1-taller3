@@ -101,7 +101,7 @@ def ejemplo() -> None:
     mostrar_resultado(notas, r)
     assert r["suma"] == 150
     assert r["promedio"] == 37.5
-    print("--> Coincide con el ejemplo - suma: 150 y promedio: 37.5)\n")
+    print("--> Coincide con el ejemplo - suma: 150 y promedio: 37.5\n")
 
 
 if __name__ == "__main__":
@@ -110,7 +110,10 @@ if __name__ == "__main__":
     print("=" * 52)
     print("1. Ver ejemplo del enunciado [40,35,50,25]")
     print("2. Ingresar mis propias notas")
-    opcion = input("\nElige una opción [1/2]: ").strip()
+
+    opcion = input("\nElige una opcion [1/2]: ").strip()
+    while opcion not in ("1", "2"):
+        opcion = input("Opcion inválida. Elegir 1 o 2: ").strip()
 
     if opcion == "2":
         notas = pedir_notas()
@@ -118,3 +121,5 @@ if __name__ == "__main__":
         mostrar_resultado(notas, r)
     else:
         ejemplo()
+
+    input("Presiona Enter para salir...")
