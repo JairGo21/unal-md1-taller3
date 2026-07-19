@@ -1,37 +1,34 @@
 import heapq
+import csv
+import os
+
+
+def cargar_grafo(ruta: str) -> dict:
+    # Lee un archivo CSV con columnas origen, destino y peso
+    # y arma el grafo como diccionario de diccionarios (no dirigido)
+    grafo = {}
+    with open(ruta, encoding="utf-8") as f:
+        lector = csv.DictReader(f)
+        for fila in lector:
+            a, b, peso = fila["origen"], fila["destino"], int(fila["peso"])
+            grafo.setdefault(a, {})[b] = peso
+            grafo.setdefault(b, {})[a] = peso
+    return grafo
+
 
 def grafo_ejemplo() -> dict:
-    # Grafo de una ciudad con 8 vertices, 13 conexiones, peso equivalente a tiempo en minutos.
-    conexiones = [
-        ("Portal", "Calle26", 4),
-        ("Portal", "Museo", 2),
-        ("Calle26", "Centro", 5),
-        ("Calle26", "Museo", 1),
-        ("Museo", "Centro", 8),
-        ("Museo", "Universidad", 10),
-        ("Centro", "Universidad", 2),
-        ("Centro", "Parque", 6),
-        ("Centro", "Estadio", 4),
-        ("Universidad", "Parque", 3),
-        ("Universidad", "Estadio", 9),
-        ("Parque", "Terminal", 1),
-        ("Terminal", "Estadio", 7),
-    ]
-
-    grafo = {}
-    for a, b, peso in conexiones:
-        grafo.setdefault(a, {})[b] = peso
-        grafo.setdefault(b, {})[a] = peso  # el grafo es no dirigido
-    return grafo
+    # Carga el grafo de ejemplo guardado en datos/grafo1.csv
+    ruta = os.path.join(os.path.dirname(__file__), "datos", "grafo1.csv")
+    return cargar_grafo(ruta)
 
 
 def dijkstra(grafo: dict, origen: str, destino: str):
     # Encuentra la ruta mas corta entre origen y destino con pesos no negativos
-    # Devuelve distancia_total, ruta o None si no hay camino.
+    # Devuelve distancia_total, ruta o None si no hay camino
     if origen not in grafo:
-        raise ValueError(f"El vertice de origen '{origen}' no está presente en el grafo")
+        raise ValueError(f"El vértice de origen '{origen}' no está presente en el grafo.")
     if destino not in grafo:
-        raise ValueError(f"El vertice de destino '{destino}' no está presente en el grafo")
+        raise ValueError(f"El vértice de destino '{destino}' no está presente en el grafo.")
 
     distancias = {v: float("inf") for v in grafo}
     distancias[origen] = 0
@@ -59,6 +56,7 @@ def dijkstra(grafo: dict, origen: str, destino: str):
     if distancias[destino] == float("inf"):
         return None, None                # Sin conexión entre origen y destino
 
+    # Reconstruir la ruta siguiendo los "previo" desde el destino hasta el origen
     ruta = [destino]
     while ruta[-1] != origen:
         ruta.append(previo[ruta[-1]])
@@ -85,7 +83,6 @@ def mostrar_resultado(origen: str, destino: str, distancia, ruta) -> None:
 def pedir_origen_destino(grafo: dict):
     print("Vértices disponibles:", ", ".join(sorted(grafo.keys())))
     while True:
-        
         origen = input("Origen: ").strip()
 
         if origen in grafo:
@@ -100,6 +97,7 @@ def pedir_origen_destino(grafo: dict):
 
 
 def ejemplo() -> None:
+    # Caso de ejemplo, ruta mas corta de Portal a Estadio
     grafo = grafo_ejemplo()
     distancia, ruta = dijkstra(grafo, "Portal", "Estadio")
     mostrar_resultado("Portal", "Estadio", distancia, ruta)
@@ -115,7 +113,7 @@ if __name__ == "__main__":
     print("1. Ver ejemplo Portal -> Estadio")
     print("2. Elegir origen y destino")
 
-    opcion = input("\nElige una opcion [1/2]: ").strip()
+    opcion = input("\nElige una opción [1/2]: ").strip()
     while opcion not in ("1", "2"):
         opcion = input("Opcion inválida. Elegir 1 o 2: ").strip()
 

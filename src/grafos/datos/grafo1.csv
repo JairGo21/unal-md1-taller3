@@ -1,0 +1,14 @@
+origen,destino,peso
+Portal,Calle26,4
+Portal,Museo,2
+Calle26,Centro,5
+Calle26,Museo,6
+Museo,Centro,8
+Museo,Universidad,10
+Centro,Universidad,2
+Centro,Parque,6
+Centro,Estadio,4
+Universidad,Parque,3
+Universidad,Estadio,9
+Parque,Terminal,1
+Terminal,Estadio,7
