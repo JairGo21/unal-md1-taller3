@@ -105,6 +105,10 @@ def ejemplo() -> None:
     assert ruta == ["Portal", "Museo", "Calle26", "Centro", "Estadio"]
     print("--> Coincide con el resultado esperado -> distancia: 12\n")
 
+def abrir_interfaz():
+    # Importación local
+    from dijkstra_visual import iniciar_editor
+    iniciar_editor()
 
 if __name__ == "__main__":
     print("=" * 52)
@@ -112,17 +116,21 @@ if __name__ == "__main__":
     print("=" * 52)
     print("1. Ver ejemplo Portal -> Estadio")
     print("2. Elegir origen y destino")
+    print("3. Abrir interfaz gráfica")
 
-    opcion = input("\nElige una opción [1/2]: ").strip()
-    while opcion not in ("1", "2"):
-        opcion = input("Opcion inválida. Elegir 1 o 2: ").strip()
+    opcion = input("\nElige una opción [1/2/3]: ").strip()
+    while opcion not in ("1", "2", "3"):
+        opcion = input("Opcion inválida. Elegir 1, 2 o 3: ").strip()
 
-    if opcion == "2":
+    if opcion == "1":
+        ejemplo()
+
+    elif opcion == "2":
         grafo = grafo_ejemplo()
         origen, destino = pedir_origen_destino(grafo)
         distancia, ruta = dijkstra(grafo, origen, destino)
         mostrar_resultado(origen, destino, distancia, ruta)
-    else:
-        ejemplo()
 
+    else:
+        abrir_interfaz()
     input("Presiona Enter para salir...")

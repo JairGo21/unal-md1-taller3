@@ -309,7 +309,10 @@ class EditorGrafo:
         self._dibujar()
 
 
-if __name__ == "__main__":
+def iniciar_editor():
     root = tk.Tk()
-    app = EditorGrafo(root)
+    EditorGrafo(root)
     root.mainloop()
+
+if __name__ == "__main__":
+    iniciar_editor()
