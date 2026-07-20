@@ -17,8 +17,8 @@ def cargar_grafo(ruta: str) -> dict:
 
 
 def grafo_ejemplo() -> dict:
-    # Carga el grafo de ejemplo guardado en datos/grafo1.csv
-    ruta = os.path.join(os.path.dirname(__file__), "datos", "grafo1.csv")
+    # Carga el grafo de ejemplo guardado en datos/grafo_ejemplo_dijkstra.csv
+    ruta = os.path.join(os.path.dirname(__file__), "datos", "grafo_ejemplo_dijkstra.csv")
     return cargar_grafo(ruta)
 
 

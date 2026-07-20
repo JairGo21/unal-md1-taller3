@@ -1,8 +1,8 @@
 origen,destino,peso
-Portal,Calle26,4
+Portal,Calle26,6
 Portal,Museo,2
 Calle26,Centro,5
-Calle26,Museo,6
+Calle26,Museo,1
 Museo,Centro,8
 Museo,Universidad,10
 Centro,Universidad,2

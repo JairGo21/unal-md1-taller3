@@ -1,0 +1,17 @@
+origen,destino,peso
+Tienda,Hogar,5
+Tienda,Parque,1
+Tienda,Cine,3
+Hogar,Panadería,10
+Hogar,Estación,5
+Hogar,Bar,4
+Hogar,Parque,3
+Hogar,Cine,8
+Hogar,Museo,4
+Panadería,Universidad,5
+Panadería,Museo,4
+Panadería,Estación,1
+Universidad,Estación,6
+Estación,Bar,10
+Bar,Parque,8
+Cine,Museo,3
