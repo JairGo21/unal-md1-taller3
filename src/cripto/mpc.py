@@ -1,7 +1,9 @@
 import random
 
 def repartir_nota(x: int, M: int) -> list[int]:
-    # Parte una nota x en 3 numeros aleatorios
+    # Parte una nota x en 3 numeros aleatorios tales que
+    # (a + b + c) mod M == x. Asi ningun servidor puede reconstruir la nota
+    # solo con ver su parte.
     a = random.randrange(0, M)
     b = random.randrange(0, M)
     c = (x - a - b) % M
@@ -9,28 +11,30 @@ def repartir_nota(x: int, M: int) -> list[int]:
 
 
 def mpc(notas: list[int], M: int = 1000003):
-    
+
     # Reparte cada nota entre 3 servidores, reconstruye solo la suma y el
     # promedio sin que ninguno tenga acceso a la lista original.
-    
+
     if not notas:
         raise ValueError("La lista de notas no puede estar vacia")
     for n in notas:
         if not (0 <= n <= 50):
             raise ValueError(f"Cada nota debe estar entre 0 y 50, se recibió {n}")
 
+    # Repartimos cada nota en 3 pedazos
     partes = [repartir_nota(n, M) for n in notas]
 
-    # Vista de cada servidor
+    # Cada columna es lo que veria un servidor: solo una fraccion de cada nota
     p1 = [x[0] for x in partes]
     p2 = [x[1] for x in partes]
     p3 = [x[2] for x in partes]
 
-    # Cada servidor suma su columna sin saber las notas completas
+    # Cada servidor suma lo que le toco, sin saber nada de las notas completas
     t1 = sum(p1) % M
     t2 = sum(p2) % M
     t3 = sum(p3) % M
 
+    # Al juntar las tres sumas parciales recuperamos la suma total (mod M)
     suma = (t1 + t2 + t3) % M
     promedio = suma / len(notas)
 
@@ -45,7 +49,7 @@ def mpc(notas: list[int], M: int = 1000003):
 
 
 def pedir_notas() -> list[int]:
-    # Se piden notas una por una hasta que el usuario escriba "fin".
+    # El usuario ingresa las notas una por una. Termina cuando escribe "fin".
     print("=" * 52)
     print("   MPC - Suma y promedio secreto de notas")
     print("=" * 52)
@@ -77,7 +81,7 @@ def pedir_notas() -> list[int]:
 
 
 def mostrar_resultado(notas: list[int], r: dict) -> None:
-    # Tabla de resultados
+    # Imprime los resultados con un poco de formato para que se lean mejor
     ancho = 52
     print("\n" + "=" * ancho)
     print("  RESULTADO".center(ancho))
@@ -95,7 +99,7 @@ def mostrar_resultado(notas: list[int], r: dict) -> None:
 
 
 def ejemplo() -> None:
-    # Corre el caso de ejemplo y verifica resultados
+    # Caso del enunciado: estas notas deberian dar suma 150 y promedio 37.5
     notas = [40, 35, 50, 25]
     r = mpc(notas)
     mostrar_resultado(notas, r)

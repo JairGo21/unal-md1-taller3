@@ -2,14 +2,17 @@ from itertools import product
 
 
 def expr1(A, B, C):
+    # (A and B) or (not C) -- las tres expresiones del enunciado
     return (A and B) or (not C)
 
 
 def expr2(A, B, C):
+    # (A xor B) and C
     return (A ^ B) and C
 
 
 def expr3(A, B, C):
+    # (A or B) and (not A or C)
     return (A or B) and (not A or C)
 
 
@@ -29,7 +32,7 @@ def normalizar(expresion):
     return expresion
 
 def mostrar_tabla(nombre, func):
-    # Prueba las 8 combinaciones de A,B,C (2^3) y las imprime en forma de tabla
+    # Prueba las 8 combinaciones de A,B,C y las imprime en forma de tabla
     print(f"\nTabla de verdad: {nombre}")
     print("+-----+-----+-----+-----------+")
     print("|  A  |  B  |  C  | Resultado |")
@@ -50,7 +53,8 @@ def pedir_valor(nombre):
 
 
 def elegir_variables():
-    # Deja marcar con 1/0 cuales de A,B,C,D se van a usar en la expresión personalizada. Devuelve la lista de variables elegidas.
+    # El usuario marca con 1/0 cuales de A,B,C,D quiere usar.
+    # Devuelve la lista de variables elegidas.
     print("Elegir variables a usar (1 = incluir, 0 = no incluir):")
     variables = []
     for letra in ("A", "B", "C", "D"):
@@ -59,6 +63,7 @@ def elegir_variables():
             entrada = input("   --> Escribe 1 o 0: ").strip()
         if entrada == "1":
             variables.append(letra)
+    # Si no eligió ninguna, le pedimos de nuevo
     if not variables:
         print("   --> Debes incluir al menos una variable.\n")
         return elegir_variables()
@@ -66,7 +71,7 @@ def elegir_variables():
 
 
 def mostrar_tabla_personalizada(expresion, variables):
-    # Genera la tabla de verdad para una expresión escrita por el usuario.
+    # Genera la tabla de verdad para una expresion escrita por el usuario.
     columnas = variables + ["Resultado"]
     anchos = [max(len(c), 3) for c in columnas]
     separador = "+" + "+".join("-" * (a + 2) for a in anchos) + "+"
@@ -75,11 +80,11 @@ def mostrar_tabla_personalizada(expresion, variables):
     print(separador)
     print("| " + " | ".join(c.center(a) for c, a in zip(columnas, anchos)) + " |")
     print(separador)
+    # Pasamos AND/OR/NOT/XOR del usuario a la sintaxis de python
     expresion = normalizar(expresion)
     for combinacion in product([True, False], repeat=len(variables)):
         valores = dict(zip(variables, combinacion))
         try:
-            # Evalúa la expresión con la combinación actual de valores lógicos.
             resultado = eval(expresion, {"__builtins__": {}}, valores)
         except Exception as e:
             print(f"Error al evaluar la expresion: {e}")

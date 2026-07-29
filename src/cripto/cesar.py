@@ -2,14 +2,14 @@ ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def desplazar_caracter(caracter: str, desplazamiento: int) -> str:
-        """
-        Desplaza un carácter dentro del alfabeto.
-        Conserva espacios, números y signos.
-        """
+        # Desplaza un carácter dentro del alfabeto.
+        # Conserva espacios, números y signos.
 
         if not caracter.isalpha():
             return caracter
 
+        # Trabajamos siempre en mayusculas y al final devolvemos
+        # el resultado con la capitalizacion original
         es_minuscula = caracter.islower()
         caracter = caracter.upper()
 
@@ -22,9 +22,7 @@ def desplazar_caracter(caracter: str, desplazamiento: int) -> str:
 
 
 def cifrar(texto: str, desplazamiento: int) -> str:
-        """
-        Cifra un texto utilizando el cifrado César.
-        """
+        # Cifra un texto utilizando el cifrado César.
         return "".join(
             desplazar_caracter(caracter, desplazamiento)
             for caracter in texto
@@ -32,16 +30,13 @@ def cifrar(texto: str, desplazamiento: int) -> str:
 
 
 def descifrar(texto: str, desplazamiento: int) -> str:
-        """
-        Descifra un texto utilizando el desplazamiento contrario.
-        """
+        # Para descifrar basta con correr el cifrado con k negativo
         return cifrar(texto, -desplazamiento)
 
 
 def fuerza_bruta(texto: str) -> None:
-        """
-        Prueba todos los desplazamientos posibles.
-        """
+        # Prueba todos los desplazamientos posibles.
+        # Como el alfabeto tiene 26 letras, solo hay 26 opciones que probar.
 
         print("\nPosibles descifrados:\n")
 
@@ -53,7 +48,7 @@ def fuerza_bruta(texto: str) -> None:
 
 
 def main():
-    #MENU QUE VERAN LOS USUARIOS/PERSONAS QUE USEN EL PROGRAMA
+    # Menu que vera el usuario al ejecutar el archivo directo
 
     while True:
 
