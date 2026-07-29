@@ -35,14 +35,17 @@ def dijkstra(grafo: dict, origen: str, destino: str):
     previo = {}
     visitados = set()
 
+    # La cola de prioridad siempre saca el nodo con menor distancia
     cola = [(0, origen)]
     while cola:
         dist_actual, actual = heapq.heappop(cola)
 
+        # Si ya lo procesamos, lo saltamos
         if actual in visitados:
             continue
         visitados.add(actual)
 
+        # Cuando llegamos al destino podemos cortar
         if actual == destino:
             break
 
@@ -56,7 +59,7 @@ def dijkstra(grafo: dict, origen: str, destino: str):
     if distancias[destino] == float("inf"):
         return None, None                # Sin conexión entre origen y destino
 
-    # Reconstruir la ruta siguiendo los "previo" desde el destino hasta el origen
+    # Reconstruir la ruta hacia atras siguiendo los "previos" hasta llegar al origen
     ruta = [destino]
     while ruta[-1] != origen:
         ruta.append(previo[ruta[-1]])
@@ -97,7 +100,7 @@ def pedir_origen_destino(grafo: dict):
 
 
 def ejemplo() -> None:
-    # Caso de ejemplo, ruta mas corta de Portal a Estadio
+    # Caso de ejemplo, ruta mas corta de portal a estadio
     grafo = grafo_ejemplo()
     distancia, ruta = dijkstra(grafo, "Portal", "Estadio")
     mostrar_resultado("Portal", "Estadio", distancia, ruta)
@@ -120,7 +123,7 @@ if __name__ == "__main__":
 
     opcion = input("\nElige una opción [1/2/3]: ").strip()
     while opcion not in ("1", "2", "3"):
-        opcion = input("Opcion inválida. Elegir 1, 2 o 3: ").strip()
+        opcion = input("Opción inválida. Elegir 1, 2 o 3: ").strip()
 
     if opcion == "1":
         ejemplo()

@@ -212,8 +212,8 @@ class EditorGrafo:
             return
         carpeta = os.path.join(os.path.dirname(__file__), "datos")
         os.makedirs(carpeta, exist_ok=True)
-        ruta = os.path.join(carpeta, "grafo_personalizado_dijkstra.csv")
-        ruta_pos = os.path.join(carpeta, "grafo_personalizado_pos_dijkstra.csv")
+        ruta = os.path.join(carpeta, "grafo_personalizado.csv")
+        ruta_pos = os.path.join(carpeta, "grafo_personalizado_pos.csv")
 
         with open(ruta, "w", newline="", encoding="utf-8") as f:
             escritor = csv.writer(f)
@@ -230,7 +230,7 @@ class EditorGrafo:
             for nombre, (x, y) in self.nodos.items():
                 escritor.writerow([nombre, round(x), round(y)])
 
-        messagebox.showinfo("Guardar", "Grafo guardado en:\ndatos/grafo_personalizado_dijkstra.csv")
+        messagebox.showinfo("Guardar", "Grafo guardado en:\ndatos/grafo_personalizado.csv")
 
     def _cargar_posiciones(self, ruta_csv):
         # Carga las posiciones asociadas al grafo, si existen.
@@ -238,10 +238,7 @@ class EditorGrafo:
         carpeta = os.path.dirname(ruta_csv)
         nombre = os.path.splitext(os.path.basename(ruta_csv))[0]
 
-        # Elimina el último sufijo dijkstra
-        nombre_base = nombre.rsplit("_", 1)[0]
-
-        ruta_pos = os.path.join(carpeta, f"{nombre_base}_pos_dijkstra.csv")
+        ruta_pos = os.path.join(carpeta, f"{nombre}_pos.csv")
 
         if not os.path.exists(ruta_pos):
             return {}
@@ -257,7 +254,7 @@ class EditorGrafo:
     def _cargar_csv(self):
         # Recupera el último grafo guardado y su distribución.
         carpeta = os.path.join(os.path.dirname(__file__), "datos")
-        ruta = os.path.join(carpeta, "grafo_personalizado_dijkstra.csv")
+        ruta = os.path.join(carpeta, "grafo_personalizado.csv")
 
         if not os.path.exists(ruta):
             messagebox.showerror(

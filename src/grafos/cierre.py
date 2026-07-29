@@ -16,7 +16,7 @@ def eliminar_arista(grafo: dict, a: str, b: str) -> dict:
     # Devuelve un grafo nuevo sin esa conexión puntual.
     nuevo = {nodo: dict(vecinos) for nodo, vecinos in grafo.items()}
     nuevo[a].pop(b, None)
-    nuevo[b].pop(a, None)
+    nuevo[b].pop(a, None)  # tambien al reves porque el grafo es no dirigido
     return nuevo
 
 
@@ -48,6 +48,7 @@ def comparar_rutas(grafo_antes: dict, grafo_despues: dict, pares) -> list:
 def mostrar_tabla(filas) -> None:
     columnas = ["Origen", "Destino", "Antes", "Después", "Diferencia", "Estado"]
 
+    # Hay que convertir None y guiones a strings antes de medir anchos
     filas_texto = []
     for origen, destino, antes, despues, diferencia, estado in filas:
         despues_txt = str(despues) if despues is not None else "-"
@@ -75,6 +76,7 @@ def mostrar_tabla(filas) -> None:
 
 def pedir_par(grafo):
     print("Vértices disponibles:", ", ".join(sorted(grafo.keys())))
+    # Validamos uno por uno para que el usuario no se descuide con el nombre
     while True:
         origen = input("  Origen: ").strip()
         if origen in grafo:
@@ -101,7 +103,7 @@ def elegir_grafo():
     if opcion == "1":
         return grafo_ejemplo()
 
-    ruta = os.path.join(os.path.dirname(__file__), "datos", "grafo_personalizado_dijkstra.csv")
+    ruta = os.path.join(os.path.dirname(__file__), "datos", "grafo_personalizado.csv")
     if not os.path.exists(ruta):
         print("\nTodavia no existe un grafo personalizado.")
         print("Primero crea uno y guárdalo usando -> dijkstra_visual.py\n")
@@ -169,10 +171,11 @@ if __name__ == "__main__":
             grafo_despues = eliminar_arista(grafo_antes, a, b)
             print(f"\nCierre de la arista: {a} - {b}\n")
 
-        print("Ingresa al menos 5 pares origen-destino para comparar (escribe 'fin' en el origen para terminar):")
+        print("Ingresa al menos 5 pares origen-destino para comparar o escribe 'fin' en el origen para terminar:")
         pares = []
+        # El usuario puede ir agregando pares hasta que escriba 'fin' en el origen
         while True:
-            origen = input(f"  Par #{len(pares) + 1} - Origen (o 'fin'): ").strip()
+            origen = input(f"  Par #{len(pares) + 1} - Origen o 'fin': ").strip()
             if origen.lower() == "fin":
                 if len(pares) < 1:
                     print("   --> Ingresa al menos un par.")

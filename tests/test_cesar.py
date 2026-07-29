@@ -53,6 +53,7 @@ def ejecutar_pruebas():
 
     print("=========== VERIFICACION ===========\n")
 
+    # Si todo esto pasa, el cifrado/descifrado esta devolviendo lo que debe.
     assert cifrar("HOLA UNAL", 3) == "KROD XQDO"
     assert cifrar("Hola Mundo!", 5) == "Mtqf Rzsit!"
     assert cifrar("XYZ 2026", 4) == "BCD 2026"
