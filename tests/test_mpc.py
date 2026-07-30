@@ -30,7 +30,7 @@ def ejecutar_pruebas():
     print()
 
     print("Prueba 4: Vistas de los servidores")
-    # Sanity check: las tres partes sumadas (mod M) deben reconstruir la nota original
+    # las tres partes sumadas deben reconstruir la nota original
     partes = repartir_nota(40, 1000003)
     print("Nota real: 40")
     print("Partes repartidas:", partes)
