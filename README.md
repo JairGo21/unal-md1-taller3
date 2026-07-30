@@ -41,7 +41,7 @@ python src/cuantica/simulador.py
 
 ### Editor visual de grafos Dijkstra
 
-El editor visual (`src/grafos/dijkstra_visual.py`) abre una ventana con un lienzo donde se puede armar un grafo personalizado haciendo clics con el ratón. Su objetivo es producir un archivo CSV que después pueda ser consumido por los ejercicios 4, 5 y 6.
+El editor visual `src/grafos/dijkstra_visual.py` abre una ventana con un lienzo donde se puede armar un grafo personalizado. Su objetivo es producir un archivo CSV que después podrá ser utilizado en los ejercicios 4, 5 y 6.
 
 **Cómo acceder:**
 
