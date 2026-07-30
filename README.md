@@ -56,20 +56,20 @@ El editor visual `src/grafos/dijkstra_visual.py` abre una ventana con un lienzo 
 **Cómo se usa:**
 
 1. La barra superior tiene los modos de trabajo. Se cambia con los botones:
-   - **Agregar vértice** — clic en el lienzo para colocar un vértice; te pide el nombre en un cuadro de diálogo.
-   - **Agregar arista** — clic en un vértice y luego en otro; te pide el peso en un cuadro de diálogo.
-   - **Calcular ruta** — clic en el origen y luego en el destino, aplica Dijkstra sobre lo que haya en el editor y resalta el camino más corto.
-   - **Guardar CSV** — escribe el grafo en `src/grafos/datos/grafo_personalizado.csv` y, junto a él, las posiciones de cada vértice en `src/grafos/datos/grafo_personalizado_pos.csv`. Guardar las posiciones permite que al volver a abrir el grafo con **Cargar CSV** los vértices queden exactamente donde se dejaron, en vez de reacomodarse automáticamente.
-   - **Cargar CSV** — recupera el último grafo guardado usando las posiciones guardadas; los vértices nuevos que no tengan posición se acomodan solos en círculo.
-   - **Reiniciar** — borra todo para empezar uno nuevo.
+   - **Agregar vértice** --> clic en el lienzo para colocar un vértice; te pide el nombre en un cuadro de diálogo.
+   - **Agregar arista** --> clic en un vértice y luego en otro; te pide el peso en un cuadro de diálogo.
+   - **Calcular ruta** --> clic en el origen y luego en el destino, aplica Dijkstra sobre lo que haya en el editor y resalta el camino más corto.
+   - **Guardar CSV** --> escribe el grafo en `src/grafos/datos/grafo_personalizado.csv` y, junto a él, las posiciones de cada vértice en `src/grafos/datos/grafo_personalizado_pos.csv`. Guardar las posiciones permite que al volver a abrir el grafo con **Cargar CSV** los vértices queden exactamente donde se dejaron, en vez de reacomodarse automáticamente.
+   - **Cargar CSV** --> recupera el último grafo guardado usando las posiciones guardadas; los vértices nuevos que no tengan posición se acomodan solos en círculo.
+   - **Reiniciar** --> borra todo para empezar uno nuevo.
 
 2. Una vez guardado, el grafo queda disponible para los demás ejercicios.
 
 **En qué ejercicios se aplica:**
 
-- **Ejercicio 4 — Dijkstra (`src/grafos/dijkstra.py`):** la opción 3 del menú "Abrir interfaz gráfica" lanza el editor visual.
-- **Ejercicio 5 — Cierre (`src/grafos/cierre.py`):** al elegir la opción 2 del menú principal, ofrece cargar el grafo personalizado desde el CSV guardado.
-- **Ejercicio 6 — Coloreo (`src/grafos/coloreo.py`):** al elegir la opción 2 del menú principal, carga directamente el grafo personalizado.
+- **Ejercicio 4 —> Dijkstra `src/grafos/dijkstra.py`:** la opción 3 del menú "Abrir interfaz gráfica" lanza el editor visual.
+- **Ejercicio 5 —> Cierre `src/grafos/cierre.py`:** al elegir la opción 2 del menú principal, ofrece cargar el grafo personalizado desde el CSV guardado.
+- **Ejercicio 6 —> Coloreo `src/grafos/coloreo.py`:** al elegir la opción 2 del menú principal, carga directamente el grafo personalizado.
 
 En los tres casos, si el archivo `grafo_personalizado.csv` no existe todavía, el programa avisa y sugiere crearlo desde el editor.
 
