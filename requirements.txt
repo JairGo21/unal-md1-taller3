@@ -1,0 +1,4 @@
+# Este proyecto no usa librerías externas.
+# Solo se usan módulos de la biblioteca estándar de Python 3.x:
+# Tales como csv, heapq, math, os, random, sys, tkinter, itertools
+# Todos vienen incluidos con la instalación oficial de Python.
