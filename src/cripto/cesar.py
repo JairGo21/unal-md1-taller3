@@ -1,3 +1,6 @@
+# Cifrado Cesar: cada letra se reemplaza por la que esta k posiciones adelante en el alfabeto trabajando modulo 26.
+#  Para descifrar se usa el desplazamiento contrario -k. Como solo hay 26 carácteres posibles, es trivial.
+
 ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 

@@ -1,3 +1,6 @@
+# MPC: cada nota x se reparte en 3 numeros aleatorios a, b, c tales que (a + b + c) mod M == x. Asi, ningun
+# servidor ve la nota completa, solo al juntar las sumas parciales de los tres servidores se recupera la suma total y el promedio.
+
 import random
 
 def repartir_nota(x: int, M: int) -> list[int]:

@@ -1,3 +1,7 @@
+# Coloreo de grafos: se asigna un color a cada vertice de manera que
+# ningun par adyacente comparta color. Usamos el algoritmo voraz de
+# Welsh-Powell. No siempre da el mínimo, pero siempre produce un coloreo válido.
+
 import csv
 import os
 

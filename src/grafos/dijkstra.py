@@ -1,3 +1,8 @@
+# Dijkstra: algoritmo para encontrar la ruta mas corta entre dos
+# vertices en un grafo con pesos no negativos. Parte del origen con
+# distancia 0 y va expandiendo, con una cola de prioridad, el vertice
+# con menor distancia tentativa hasta llegar al destino.
+
 import heapq
 import csv
 import os

@@ -1,3 +1,8 @@
+# Cierre de una estacion: a partir del grafo del punto 4, se elimina
+# un vertice o una arista y se vuelven a correr Dijkstra para varios
+# pares origen-destino. Asi se mide cuanto cambian las distancias y
+# se detecta si algun par queda desconectado.
+
 import os
 from dijkstra import dijkstra, grafo_ejemplo, cargar_grafo
 

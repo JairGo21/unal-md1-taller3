@@ -1,3 +1,7 @@
+# Tablas de verdad: para cada expresion booleana se prueban todas las
+# combinaciones posibles de las variables de entrada y se imprime el resultado. 
+# La idea es mostrar como una expresion lóogica define una funcion de {V,F}^n -> {V,F}.
+
 from itertools import product
 
 
